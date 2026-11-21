@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Loy Krathong</title>
+<link href="https://googleapis.com" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Mali',sans-serif;user-select:none;-webkit-tap-highlight-color:transparent}
+body{background:linear-gradient(180deg,#2b1055,#5e2a84 35%,#7b42b8);color:#fff;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;position:relative}
+.sky{position:absolute;top:18%;width:100%;height:120px;background:#1a0836;clip-path:polygon(0 100%,0 60%,10% 60%,15% 30%,20% 60%,35% 60%,40% 20%,42% 10%,44% 20%,48% 60%,60% 60%,65% 35%,70% 60%,82% 60%,86% 25%,90% 60%,100% 60%,100% 100%);z-index:1;pointer-events:none}
+.riv{position:absolute;top:calc(18% + 118px);bottom:0;width:100%;background:radial-gradient(circle at 50% 20%,#8c52ff,#5c259c);z-index:2;pointer-events:none}
+.sb{position:absolute;top:30px;background:rgba(255,255,255,.2);padding:10px 25px;border-radius:30px;font-size:1.2rem;font-weight:700;z-index:20;border:1px solid rgba(255,255,255,.4);pointer-events:none}
+.k{position:absolute;font-size:48px;cursor:pointer;z-index:99;padding:12px;animation:b 2s ease-in-out infinite alternate}
+@keyframes b{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+.sc{display:none;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;z-index:10;position:relative}
+.sc.ac{display:flex}
+.bk{font-size:130px;cursor:pointer;animation:b 2s ease-in-out infinite alternate;position:relative;z-index:99}
+.qm{position:absolute;top:10px;left:50%;transform:translateX(-50%);font-size:50px;color:#ff69b4;font-weight:700;text-shadow:0 0 10px #fff;pointer-events:none}
+.pb{background:#fff0f6;padding:20px;border-radius:25px;width:90%;max-width:340px;text-align:center;color:#d63384;z-index:99}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:270px;height:270px;margin:15px auto;background:#ffc2d1;padding:4px;border-radius:12px}
+.tl{width:84px;height:84px;border-radius:6px;cursor:pointer;overflow:hidden;position:relative;background:#ffe5ec}
+.tl img{width:260px;height:260px;object-fit:cover;position:absolute;pointer-events:none}
+.tl.sel{outline:3px solid #ff1493;transform:scale(.95);z-index:2}
+.cf{width:150px;height:180px;border-radius:20px 20px 0 0;object-fit:cover;border:4px solid #fff;margin-bottom:-45px;z-index:99;cursor:pointer}
+.ht{margin-top:20px;background:rgba(0,0,0,.3);padding:8px 20px;border-radius:20px;font-size:.95rem;pointer-events:none}
+.md{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150;align-items:center;justify-content:center;padding:20px}
+.md.ac{display:flex}
+.wc{background:#fff0f6;color:#c2185b;width:100%;max-width:340px;padding:25px;border-radius:25px;text-align:center;border:3px solid #ffb3c6}
+.wt{margin:15px 0 20px;line-height:1.7;font-size:.95rem;min-height:150px;white-space:pre-line}
+.cb{background:#ff4d88;color:#fff;border:none;padding:10px 30px;border-radius:20px;font-size:1rem;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="sky"></div><div class="riv"></div>
+<div class="sc ac" id="s1">
+<div class="sb">เก็บกระทง: <span id="n">0</span> / 20</div>
+</div>
+<div class="sc" id="s2">
+<div class="bk" onclick="gp()"><div class="qm">?</div>🪷</div>
+<div class="ht">แตะที่กระทงสิ</div>
+</div>
+<div class="sc" id="s3">
+<div class="pb">
+<h3>🧩 ช่วยต่อจิ๊กซอว์หน่อยย</h3>
+<p style="font-size:.8rem;color:#888;margin-top:4px">แตะสลับช่องเพื่อต่อภาพให้สมบูรณ์ 💕</p>
+<div class="pg" id="g"></div>
+<p id="ps" style="font-weight:700;min-height:24px"></p>
+</div>
+</div>
+<div class="sc" id="s4">
+<img src="1795272429612.jpg" class="cf" onclick="ow()">
+<div class="bk" onclick="ow()">🪷</div>
+<div class="ht">ลองแตะที่รูปของเราดูสิ ✨</div>
+</div>
+<div class="md" id="m">
+<div class="wc">
+<h3>✨ คำอธิษฐาน ✨</h3>
+<div class="wt" id="tt"></div>
+<button class="cb" onclick="cw()">ปิด</button>
+</div>
+</div>
+<script>
+const P="1795272429612.jpg";
+const W="ลอยกระทงปีนี้\nเค้าขอให้เธอมีความสุขมากๆ นะ\nขอให้สุขภาพแข็งแรง ไม่เจ็บไม่ป่วย\nไม่ว่าจะต้องเหนื่อยกับงานหรือเจอเรื่องอะไร\nก็ขอให้ผ่านไปได้ด้วยดี\nขอให้เรื่องที่ไม่สบายใจลอยหายไปกับสายน้ำ\nมีแต่สิ่งดีๆ และคนใจดีเข้ามาในชีวิต\nขอให้คืนนี้เป็นคืนที่ดีของเธอ\nขอให้ทุกคำอธิษฐานเป็นจริง\nปล่อยความทุกข์ ความเหนื่อย\nและเรื่องไม่ดีให้ลอยไปกับกระทง\nขอให้ทุกวันของเธอเป็นวันที่ดี\nและมีรอยยิ้มอยู่เสมอนะ\nสุดท้ายเค้าขอให้เราอยู่ข้างๆ กัน\nคอยเป็นกำลังใจและเป็นความสุขให้กัน\nแบบนี้ไปนานๆ เลยนะ 🥰💕";
+let c=0,s1=document.getElementById("s1");
+const coords="36-8,40-34,35-60,42-80,48-15,46-45,50-72,56-6,58-30,55-55,60-80,66-12,68-40,65-68,74-8,76-32,73-56,77-78,83-20,84-62".split(",");
+coords.forEach(item=>{
+let p=item.split("-");
+let d=document.createElement("div");
+d.className="k";d.innerText="🪷";
+d.style.top=p.at(0)+"%";d.style.left=p.at(1)+"%";
+d.onclick=function(){
+c++;document.getElementById("n").innerText=c;
+if(c>=20){d.style.display="none";setTimeout(()=>sw("s2"),300)}
+else{
+let r=coords.at(Math.floor(Math.random()*coords.length)).split("-");
+d.style.top=r.at(0)+"%";d.style.left=r.at(1)+"%";
+}
+};
+s1.appendChild(d);
+});
+function sw(i){"s1,s2,s3,s4".split(",").forEach(x=>document.getElementById(x).classList.remove("ac"));document.getElementById(i).classList.add("ac")}
+let od="0,1,2,3,4,5,6,7,8".split(",").map(Number),sl=null;
+function gp(){
+sw("s3");
+do{od.sort(()=>Math.random()-.5)}while(od.every((v,x)=>v===x));
+rp();
+}
+function rp(){
+let g=document.getElementById("g");g.innerHTML="";
+od.forEach((v,i)=>{
+let t=document.createElement("div");
+t.className="tl"+(sl===i?" sel":"");
+let m=document.createElement("img");m.src=P;
+m.style.left="-"+((v%3)*86)+"px";m.style.top="-"+(Math.floor(v/3)*86)+"px";
+t.appendChild(m);t.onclick=()=>hc(i);g.appendChild(t);
+});
+}
+function hc(i){
+if(sl===null)sl=i;
+else{
+let tmp=od.at(sl);
+od.splice(sl,1,od.at(i));
+od.splice(i,1,tmp);
+sl=null;
+if(od.every((v,x)=>v===x)){rp();document.getElementById("ps").innerText="เก่งที่สุดเลย~ 🎉";setTimeout(()=>sw("s4"),1500);return}
+}
+rp();
+}
+let tm;
+function ow(){
+document.getElementById("m").classList.add("ac");
+let e=document.getElementById("tt");e.innerText="";let i=0;clearInterval(tm);
+tm=setInterval(()=>{if(i<W.length){e.innerText+=W.charAt(i);i++}else clearInterval(tm)},45);
+}
+function cw(){document.getElementById("m").classList.remove("ac");clearInterval(tm)}
+</script>
+</body>
+</html>
